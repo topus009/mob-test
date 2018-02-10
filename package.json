@@ -1,0 +1,34 @@
+{
+  "name": "parallax-screensaver",
+  "version": "1.0.0",
+  "description": "Beautiful live wallpaper changing its appearance depending on the tilt of the smartphone.",
+  "author": "Sergey Topolov",
+  "private": true,
+  "devDependencies": {
+    "jest-expo": "25.1.0",
+    "react-devtools": "^3.1.0",
+    "react-native-scripts": "1.11.0",
+    "react-test-renderer": "16.2.0",
+    "expo": "^25.0.0"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "react-devtools": "react-devtools"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "react": "16.2.0",
+    "react-native": "0.53.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/topus009/parallax-screensaver.git"
+  }
+}

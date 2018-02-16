@@ -1,19 +1,18 @@
 {
   "expo": {
-    "name": "3D Parallax Live Gyro Wallpaper 2018",
-    "description": "Beautiful live wallpaper changing its appearance depending on the tilt of the smartphone.",
-    "sdkVersion": "25.0.0",
+    "name": "mob-test",
+    "description": "mob-test",
+    "sdkVersion": "23.0.0",
     "version": "1.0.0",
     "platforms": ["android"],
-    "githubUrl": "https://github.com/topus009/parallax-screensaver.git",
-    "orientation": "portrait",
+    "githubUrl": "https://github.com/topus009/mob-test.git",
     "icon": "./logo.png",
     "splash": {
-      "backgroundColor": "#000000"
+      "backgroundColor": "#fff"
     },
-    "slug": "parallax-screensaver",
+    "slug": "mob-test",
     "android": {
-      "package": "com.topus009.parallax-screensaver",
+      "package": "com.topus009.mobtest",
       "versionCode": 1,
       "icon": "./logo.png"
     }

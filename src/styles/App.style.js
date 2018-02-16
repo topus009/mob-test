@@ -4,11 +4,11 @@ const styles = (Dimensions) => {
   return {
     container: {
       flex: 1,
-      backgroundColor: '#F1F1F1',
+      backgroundColor: '#fff',
       alignItems: 'center',
-      justifyContent: 'flex-start',
       flexDirection: 'column',
       maxHeight: dH,
+      marginTop: 25,
     },
     text: {
       alignSelf: 'stretch',

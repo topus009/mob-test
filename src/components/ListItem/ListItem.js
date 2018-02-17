@@ -8,15 +8,25 @@ import style from './ListItem.style';
 import Btn from '../Btn/Btn';
 
 const ListItem = (props) => {
-  const styles = StyleSheet.create(style());
-  const { item } = props;
-
+  const {
+    item,
+    display,
+    onPlus,
+    onMinus,
+    section_id,
+    item_index,
+  } = props;
+  const styles = StyleSheet.create(style(display));
   return (
     <View style={styles.item}>
       <Btn
         type='text'
         text='-'
         styles={left_btn_style}
+        section_id={section_id}
+        item_index={item_index}
+        action={onMinus}
+        disabled={item.text_bottom === 0 ? true : false}
       />
       <View style={styles.item_title_block}>
         <Text style={styles.text_top}>{item.text_top}</Text>
@@ -26,6 +36,9 @@ const ListItem = (props) => {
         type='text'
         text='+'
         styles={right_btn_style}
+        section_id={section_id}
+        item_index={item_index}
+        action={onPlus}
       />
     </View>
   );

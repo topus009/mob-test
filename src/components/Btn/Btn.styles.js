@@ -1,4 +1,4 @@
-const styles = (type, stylesheet) => {
+const styles = (type, stylesheet, disabled) => {
   const {
     btn,
     content,
@@ -9,6 +9,7 @@ const styles = (type, stylesheet) => {
       btn: {
         justifyContent: 'center',
         alignItems: 'center',
+        opacity: disabled ? 0.2 : 1,
         ...btn,
       },
       content: {
@@ -22,6 +23,7 @@ const styles = (type, stylesheet) => {
       btn: {
         justifyContent: 'center',
         alignItems: 'center',
+        opacity: disabled ? 0.2 : 1,
         ...btn,
       },
       content: {

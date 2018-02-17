@@ -6,8 +6,8 @@ const styles = () => {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      alignSelf: 'stretch',
-      elevation: 5,
+      backgroundColor: '#fff',
+      elevation: 10,
     },
     text: {
       color: '#000000',

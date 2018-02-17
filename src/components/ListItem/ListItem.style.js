@@ -1,4 +1,4 @@
-const styles = () => {
+const styles = (display = 'flex') => {
   return {
     item: {
       height: 76,
@@ -7,7 +7,7 @@ const styles = () => {
       justifyContent: 'space-between',
       alignItems: 'center',
       backgroundColor: '#fff',
-      elevation: 5,
+      display: display,
     },
     item_title_block: {
       paddingHorizontal: 10,

@@ -13,14 +13,25 @@ const Btn = (props) => {
   const {
     type,
     styles,
+    action,
+    section_id,
+    item_index,
+    disabled,
   } = props;
 
-  generated_styles = StyleSheet.create(style(type,styles));
-
+  generated_styles = StyleSheet.create(style(type,styles,disabled));
+  const onPress = (e) => {
+    if (disabled) return false;
+    action(e, item_index, section_id);
+  }
 
   if (props.type === 'image') {
     renderBtn =       
-      <TouchableOpacity style={generated_styles.btn}>
+      <TouchableOpacity
+        style={generated_styles.btn}
+        onPress={onPress}
+        disabled={disabled}
+      >
         <Image 
           source={props.src}
           style={generated_styles.content}
@@ -30,7 +41,11 @@ const Btn = (props) => {
 
   if (props.type === 'text') {  
     renderBtn =
-      <TouchableOpacity style={generated_styles.btn}>
+      <TouchableOpacity 
+        style={generated_styles.btn}
+        onPress={onPress}
+        disabled={disabled}
+      >
         <Text style={generated_styles.content}>{props.text}</Text>
       </TouchableOpacity>;
   }

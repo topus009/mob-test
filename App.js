@@ -6,26 +6,45 @@ import {
   SectionList,
   NativeModules,
 } from 'react-native';
+// =============================
 import AppStyle from './src/styles/App.style';
+// =============================
 import Header from './src/containers/Header/Header';
 import ListItem from './src/components/ListItem/ListItem';
 import Btn from './src/components/Btn/Btn';
+import UploadPhoto from './src/components/UploadPhoto/UploadPhoto';
+// =============================
 import data from './data.json';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-      // this.onChangeText = this.onChangeText.bind(this);
-
       this.state = {
         content: null,
+        // sections: null,
+        // section_items: null,
       }
     }
   
   componentDidMount() {
+    let state = data.data;
+    // let sections = [];
+    // let section_items = [];
+    state.map((section,s_i) => {
+      // sections.push(e.head);
+      // section_items.push(e.items);
+      section.items.map((item, i_i) => {
+        if (i_i <= 3) state[s_i].items[i_i].display = 'flex';
+        if (i_i > 3) state[s_i].items[i_i].display = 'none';
+        state[s_i].items[i_i].comment = null;
+        state[s_i].items[i_i].comment_visible = false;
+      });
+    });
     this.setState({
-      content: data.data,
-    })
+      content: state,
+      // sections: sections,
+      // section_items: section_items,
+    });
   }
 
   onPlus = (e, i, s) => {
@@ -45,17 +64,67 @@ export default class App extends Component {
     } = this.state;
     const newContent = content;
     newContent[s - 1].items[i].text_bottom--;
-    // const number = newContent[s - 1].items[i].text_bottom;
-    // console.log(number);
-    // if (number <= 0) newContent[s - 1].items[i].text_bottom = 0;
     this.setState({
       content: newContent,
     });
   }
 
-  // componentDidUpdate(prevState) {
+  onChangeComment = (action, i, s, text) => {
+    const {
+      content,
+    } = this.state;
+    const newContent = content;
+    if (action === 'edit') {
+      newContent[s - 1].items[i].comment = text;
+    }
+    if (action === 'submit') {
+      const comment_value = newContent[s - 1].items[i].comment;
+      if (!comment_value || !comment_value.length) {
+        newContent[s - 1].items[i].comment_visible = false;
+      }
+    }
+    this.setState({
+      content: newContent,
+    });
+  }
 
-  // }
+  onToggleComment = (i, s) => {
+    const {
+      content,
+    } = this.state;
+    const newContent = content;
+    const visible = newContent[s - 1].items[i].comment_visible;
+    const text = newContent[s - 1].items[i].comment;
+    newContent[s - 1].items[i].comment_visible = !visible;
+
+    if (visible && text && !text.length) {
+      newContent[s - 1].items[i].comment_visible = false;
+    }
+
+    this.setState({
+      content: newContent,
+    });
+  }
+
+  onLoadMore = (index, last_item_index) => {
+    const {
+      content,
+    } = this.state;
+    const index_of_last_displayed_item = 
+    content[index - 1].items.findIndex((e,i) => e.display === 'none');
+    const length_of_none_items = last_item_index - index_of_last_displayed_item + 1;
+
+    if (length_of_none_items) {
+      let times = length_of_none_items;
+      if (times > 4) times = 4;
+      for (let j = 0; j < times; j++) {
+        content[index - 1].items[index_of_last_displayed_item + j].display = 'flex';
+      }
+      this.setState({
+        content: content,
+      });
+    }
+  }
 
   render() {
     const {
@@ -69,6 +138,11 @@ export default class App extends Component {
     // console.log('============================================')
     const sections = content && content.map((e,i) => {
       return (
+        // { 
+        //   'section_id': i,
+        //   'title': e,
+        //   'data': section_items[i],
+        // }
         { 
           'section_id': e.id,
           'title': e.head,
@@ -85,16 +159,18 @@ export default class App extends Component {
         <SectionList
           // contentContainerStyle={styles.setion_list}
           sections={sections}
-          renderItem={(attr) => {
-            // console.warn(attr)
+          renderItem={({section,index,item}) => {
             return (
               <ListItem
-                section_id={attr.section.section_id}
-                item_index={attr.index}
-                item={attr.item} 
-                display={attr.index >= 4 ? 'none' : 'flex'}
+                section_id={section.section_id}
+                item_index={index}
+                item={item} 
+                display={item.display}
                 onPlus={this.onPlus}
                 onMinus={this.onMinus}
+                onChangeComment={this.onChangeComment}
+                onToggleComment={this.onToggleComment}
+                customItem={section.section_id === 3 ? <UploadPhoto /> : null}
               />
             )
           }}
@@ -108,20 +184,26 @@ export default class App extends Component {
             )
           }}
           ItemSeparatorComponent={(items) => {
-            if (items.section.data.length <= 4) {
+            if (items.leadingItem.display === 'flex' && items.trailingItem.display !== 'none') {
               return (
                 <View style={styles.item_separator} />
               )
-            } else return <View style={styles.item_separator} />
+            } else return null
           }}
           keyExtractor={(item, index) => index}
-          renderSectionFooter={(items) => {
-            if (items.section.data.length >= 4) {
+          renderSectionFooter={(content) => {
+            const {
+              section
+            } = content;
+            const last_item_index = section.data.length - 1;
+            const last_item = section.data[last_item_index];
+            if (last_item.display === 'none') {
               return (
                   <Btn
                     type='text'
                     text='Еще категории...'
                     styles={show_more_style}
+                    action={() => this.onLoadMore(content.section.section_id, last_item_index)}
                   />
               )
             }

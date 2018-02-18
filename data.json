@@ -6,35 +6,44 @@
       "items":[  
         {  
           "text_top":"Смешанный",
-          "text_bottom":12
+          "text_bottom":12,
+          "comment": "Попка дурак"
         },
         {  
           "text_top":"Стекло",
-          "text_bottom":0
+          "text_bottom":5
         },
         {  
           "text_top":"Металл",
-          "text_bottom":0
+          "text_bottom":2
         },
         {  
           "text_top":"Пластик",
           "text_bottom":0
         },
         {  
-          "text_top":"Смешанный",
-          "text_bottom":12
+          "text_top":"Пластилин",
+          "text_bottom":4
         },
         {  
-          "text_top":"Стекло",
-          "text_bottom":0
+          "text_top":"Вазелин",
+          "text_bottom":2
         },
         {  
-          "text_top":"Металл",
-          "text_bottom":0
+          "text_top":"Дерево",
+          "text_bottom":3
         },
         {  
-          "text_top":"Пластик",
-          "text_bottom":0
+          "text_top":"Водка",
+          "text_bottom":19
+        },
+        {  
+          "text_top":"Вино",
+          "text_bottom":6
+        },
+        {  
+          "text_top":"Пиво",
+          "text_bottom":11
         }
       ]
     },

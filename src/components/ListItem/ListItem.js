@@ -3,9 +3,11 @@ import {
   StyleSheet,
   View,
   Text,
+  TouchableOpacity,
 } from 'react-native';
 import style from './ListItem.style';
 import Btn from '../Btn/Btn';
+import TextInputBox from '../TextInput/TextInputBox';
 
 const ListItem = (props) => {
   const {
@@ -13,33 +15,52 @@ const ListItem = (props) => {
     display,
     onPlus,
     onMinus,
+    onChangeComment,
+    onToggleComment,
     section_id,
     item_index,
+    toggleComment,
+    customItem,
   } = props;
   const styles = StyleSheet.create(style(display));
   return (
     <View style={styles.item}>
-      <Btn
-        type='text'
-        text='-'
-        styles={left_btn_style}
-        section_id={section_id}
-        item_index={item_index}
-        action={onMinus}
-        disabled={item.text_bottom === 0 ? true : false}
-      />
-      <View style={styles.item_title_block}>
-        <Text style={styles.text_top}>{item.text_top}</Text>
-        <Text style={styles.text_bottom}>{item.text_bottom}</Text>
+      <View style={styles.item_main}>
+        <Btn
+          type='text'
+          text='-'
+          styles={left_btn_style}
+          section_id={section_id}
+          item_index={item_index}
+          action={onMinus}
+          disabled={item.text_bottom === 0 ? true : false}
+        />
+        <TouchableOpacity
+          style={styles.item_title_block}
+          onPress={() => onToggleComment(item_index,section_id)}
+        >
+          <Text style={styles.text_top}>{item.text_top}</Text>
+          <Text style={styles.text_bottom}>{item.text_bottom}</Text>
+        </TouchableOpacity>
+        <Btn
+          type='text'
+          text='+'
+          styles={right_btn_style}
+          section_id={section_id}
+          item_index={item_index}
+          action={onPlus}
+        />
       </View>
-      <Btn
-        type='text'
-        text='+'
-        styles={right_btn_style}
-        section_id={section_id}
-        item_index={item_index}
-        action={onPlus}
-      />
+      <View>
+        <TextInputBox
+          text={item.comment}
+          change={onChangeComment}
+          section_id={section_id}
+          item_index={item_index}
+          visible={item.comment_visible}
+        />
+      </View>
+      { customItem }
     </View>
   );
 }

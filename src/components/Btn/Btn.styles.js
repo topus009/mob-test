@@ -9,7 +9,7 @@ const styles = (type, stylesheet, disabled) => {
       btn: {
         justifyContent: 'center',
         alignItems: 'center',
-        opacity: disabled ? 0.2 : 1,
+        // opacity: disabled ? 0.2 : 1,
         ...btn,
       },
       content: {
@@ -23,7 +23,7 @@ const styles = (type, stylesheet, disabled) => {
       btn: {
         justifyContent: 'center',
         alignItems: 'center',
-        opacity: disabled ? 0.2 : 1,
+        // opacity: disabled ? 0.2 : 1,
         ...btn,
       },
       content: {

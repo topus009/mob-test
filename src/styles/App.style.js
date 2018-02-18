@@ -18,7 +18,6 @@ const styles = (Dimensions, STATUSBAR_HEIGHT) => {
       height: 1,
       backgroundColor: '#D9D9D9',
       marginHorizontal: 20,
-      marginVertical: 5,
     },
     // =========== section-shadow ========
     section_bottom_shadow_box: {

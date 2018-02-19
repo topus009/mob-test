@@ -15,3 +15,4 @@ Download link [APK](https://topus009.github.io/ets/mob-test-v1.0.0.rar)
 ## ToDo
 
 - Pick images from gallery or camera
+- Different screens (because it has been developed and test only on Samsung Note 4)

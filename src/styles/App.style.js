@@ -19,6 +19,14 @@ const styles = (Dimensions, STATUSBAR_HEIGHT) => {
       backgroundColor: '#D9D9D9',
       marginHorizontal: 20,
     },
+    list_footer: {
+      height: 150,
+      backgroundColor: '#EEEEEE',
+      alignItems: 'flex-end',
+      // justifyContent: 'center',
+      paddingTop: 20,
+      paddingRight: 15,
+    },
     // =========== section-shadow ========
     section_bottom_shadow_box: {
       position: 'relative',

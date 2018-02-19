@@ -7,6 +7,7 @@ import {
   Text,
 } from 'react-native';
 import style from './Header.style';
+import Btn from '../../components/Btn/Btn';
 // import icon_leftArrow from '../../icons/left-arrow.png'
 // import icon_check from '../../icons/check.png' 
 
@@ -16,7 +17,9 @@ const Header = () => {
       <View 
         style={styles.header}
       >
-        <TouchableOpacity
+        {/* 
+        
+                <TouchableOpacity
           style={styles.icon}
         >
           <Image 
@@ -24,11 +27,29 @@ const Header = () => {
             style={styles.image}
           />
         </TouchableOpacity>
+        
+        */}
+
+        <Btn 
+          type='image'
+          src={require('../../icons/left-arrow.png')}
+          styles={btn}
+          action={() => alert('Назад')}
+        />
         <Text 
           style={styles.text}
         >
           №23, Бегущие кревет...
         </Text>
+        <Btn 
+          type='image'
+          src={require('../../icons/check.png')}
+          styles={btn}
+          action={() => alert('Готово')}
+        />
+
+        {/*
+        
         <TouchableOpacity
           style={styles.icon}
         >
@@ -37,8 +58,25 @@ const Header = () => {
             style={styles.image}
           />
         </TouchableOpacity>
+        
+        */}
+
       </View>
     );  
 }
 
 export default Header;
+
+const btn = {
+  btn: {
+    height: 22,
+    width: 22,
+    margin: 25,
+  },
+  content: {
+    height: 22,
+    width: 22,
+    resizeMode: 'contain'
+  },
+};
+

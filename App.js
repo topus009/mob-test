@@ -12,7 +12,7 @@ import AppStyle from './src/styles/App.style';
 import Header from './src/containers/Header/Header';
 import ListItem from './src/components/ListItem/ListItem';
 import Btn from './src/components/Btn/Btn';
-import UploadPhoto from './src/components/UploadPhoto/UploadPhoto';
+// import UploadPhoto from './src/components/UploadPhoto/UploadPhoto';
 // =============================
 import data from './data.json';
 
@@ -28,6 +28,7 @@ export default class App extends Component {
   
   componentDidMount() {
     let state = data.data;
+    // console.log(state);
     // let sections = [];
     // let section_items = [];
     state.map((section,s_i) => {
@@ -170,7 +171,14 @@ export default class App extends Component {
                 onMinus={this.onMinus}
                 onChangeComment={this.onChangeComment}
                 onToggleComment={this.onToggleComment}
-                customItem={section.section_id === 3 ? <UploadPhoto /> : null}
+                // customComponent={section.section_id === 3 ? <UploadPhoto /> : null}
+                customBtn={section.section_id === 3 ? 
+                  <Btn 
+                    type='image'
+                    src={require('./src/icons/photo.png')}
+                    styles={uploadBtn}
+                    action={() => alert('Функционал в разработке')}
+                  /> : null}
               />
             )
           }}
@@ -208,6 +216,16 @@ export default class App extends Component {
               )
             }
           }}
+          ListFooterComponent={
+            <View style={styles.list_footer}>
+              <Btn
+                type='text'
+                text='Продолжить'
+                styles={continueBtn}
+                action={() => alert('Продолжить')}
+              />
+            </View>
+          }
         />
       </View> :     
       <View>
@@ -231,5 +249,33 @@ const show_more_style = {
   content: {
     color: '#7E7E7E',
     fontSize: 18,
+  },
+};
+
+const uploadBtn = {
+  btn: {
+    height: 45,
+    width: 75,
+    backgroundColor: '#E5E5E5',
+    elevation: 5,
+    borderRadius: 3,
+  },
+  content: {
+    // resizeMode: 'contain'
+  },
+};
+
+const continueBtn = {
+  btn: {
+    height: 45,
+    // width: 75,
+    backgroundColor: '#009687',
+    elevation: 5,
+    borderRadius: 3,
+    paddingHorizontal: 20,
+  },
+  content: {
+    color: '#fff',
+    fontSize: 20,
   },
 };

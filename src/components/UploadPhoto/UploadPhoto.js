@@ -10,26 +10,20 @@ import style from './UploadPhoto.style';
 export default class UploadPhoto extends Component {
   constructor(props) {
     super(props);
-      this.state = {
-        // color: '#9C9C9C',
-        // focused: false,
-      }
+      // this.state = {
+      // }
   }
 
   render() {
     // const {
-    //   color,
-    //   focused,
     // } = this.state;
     // const {
-    //   text,
-    //   visible,
     // } = this.props;
   
     // const styles = StyleSheet.create(style(color, focused, visible));
     return (
       <View>
-        <Text>Photo</Text>
+        <Text>Photo Gallety</Text>
       </View>
     );
   }

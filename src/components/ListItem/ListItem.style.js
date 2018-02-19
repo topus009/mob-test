@@ -1,11 +1,8 @@
 const styles = (display = 'flex') => {
   return {
     item: {
-      // height: 76,
-      flex: 1,
+      flex: 0,
       flexDirection: 'column',
-      // justifyContent: 'space-between',
-      // alignItems: 'center',
       backgroundColor: '#fff',
       display: display,
       paddingTop: 18,

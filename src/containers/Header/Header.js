@@ -11,8 +11,8 @@ import Btn from '../../components/Btn/Btn';
 // import icon_leftArrow from '../../icons/left-arrow.png'
 // import icon_check from '../../icons/check.png' 
 
-const Header = () => {
-  const styles = StyleSheet.create(style());
+const Header = ({width}) => {
+  const styles = StyleSheet.create(style(width));
     return (
       <View 
         style={styles.header}

@@ -1,8 +1,9 @@
-const styles = () => {
+const styles = (width) => {
   return {
     header: {
       height: 76,
       flex: 0,
+      width: width,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',

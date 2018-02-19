@@ -5,6 +5,7 @@ import {
   Text,
   SectionList,
   NativeModules,
+  Dimensions,
 } from 'react-native';
 // =============================
 import AppStyle from './src/styles/App.style';
@@ -21,8 +22,8 @@ export default class App extends Component {
     super(props);
       this.state = {
         content: null,
-        // sections: null,
-        // section_items: null,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
       }
     }
   
@@ -127,16 +128,23 @@ export default class App extends Component {
     }
   }
 
+  onLayout = () => {
+    this.setState({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    });
+  }
+
   render() {
     const {
       content,
+      width,
+      height,
     } = this.state;
-    const Dimensions = require('Dimensions');
+    const wh = [width,height];
     const { StatusBarManager } = NativeModules;
     const STATUSBAR_HEIGHT = StatusBarManager.HEIGHT;
-    const styles = StyleSheet.create(AppStyle(Dimensions, STATUSBAR_HEIGHT));
-    // console.log('============================================')
-    // console.log('============================================')
+    const styles = StyleSheet.create(AppStyle(wh, STATUSBAR_HEIGHT));
     const sections = content && content.map((e,i) => {
       return (
         // { 
@@ -154,9 +162,12 @@ export default class App extends Component {
 
     return (
       sections ?
-      <View style={styles.container}>
+      <View 
+        style={styles.container}
+        onLayout={this.onLayout}
+      >
         <View style={styles.status_bar_bg}/>
-        <Header />
+        <Header width={width} />
         <SectionList
           // contentContainerStyle={styles.setion_list}
           sections={sections}

@@ -1,6 +1,6 @@
-const styles = (Dimensions, STATUSBAR_HEIGHT) => {
-  const dW = Dimensions.get('window').width;
-  const dH = Dimensions.get('window').height;
+const styles = (wh, STATUSBAR_HEIGHT) => {
+  const dW = wh[0];
+  const dH = wh[1];
   return {
     container: {
       flex: 1,
